@@ -1,0 +1,7 @@
+I void print FUNCTION
+I 231 NUMBER
+I int D IDENTIFIER
+I ; IDENTIFIER
+P
+L D
+R D
