@@ -12,34 +12,34 @@ int main()
 {
     Charpoka;
     int n;
-    cin>>n;
-    vector<int>v;
-    int tot=0;
-    while(n--)
+    cin >> n;
+    vector<int> v;
+    int tot = 0;
+    while (n--)
     {
         int a;
-        cin>>a;
+        cin >> a;
         v.pb(a);
-        tot+=a;
+        tot += a;
     }
-    sort(v.begin(),v.end());
-    int sum=0;
-    if(v.size()%2==0)
+    sort(v.begin(), v.end());
+    int sum = 0;
+    if (v.size() % 2 == 0)
     {
-        
-        for(int i=0;i<(v.size()/2);i++)
+
+        for (int i = 0; i < (v.size() / 2); i++)
         {
-            sum+=v[i];
+            sum += v[i];
         }
     }
     else
     {
-        for(int i=0;i<(v.size()/2)+1;i++)
+        for (int i = 0; i < (v.size() / 2) + 1; i++)
         {
-            sum+=v[i];
+            sum += v[i];
         }
     }
-    cout<<tot-sum<<endl;
+    cout << tot - sum << endl;
     return 0;
 }
 
