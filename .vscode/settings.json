@@ -4,6 +4,7 @@
     "numeric": "cpp",
     "iostream": "cpp",
     "complex": "cpp",
-    "iosfwd": "cpp"
+    "iosfwd": "cpp",
+    "tuple": "cpp"
   }
 }
