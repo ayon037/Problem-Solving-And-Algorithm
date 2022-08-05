@@ -8,7 +8,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # This program built for i386-pc-mingw32
  
 
-# Make data base, printed on Thu Aug 04 23:06:30 2022
+# Make data base, printed on Fri Aug 05 20:39:44 2022
 
 # Variables
 
@@ -81,7 +81,7 @@ RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_16864_IGHATXBQWKCGAVUT
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9016_OEBPYIRULCLUGCRS
 # environment
 COMPUTERNAME = DESKTOP-7OI8UR8
 # environment
@@ -94,7 +94,8 @@ ORIGINAL_XDG_CURRENT_DESKTOP = undefined
 USERNAME = mohiu
 # environment
 PUBLIC = C:\Users\Public
-# environment
+# environmen 
+t
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 VSCODE_CODE_CACHE_PATH = C:\Users\mohiu\AppData\Roaming\Code\CachedData\3b889b090b5ad5793f524b5d1d39fda662b96a2a
@@ -110,8 +111,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 USERDOMAIN = DESKTOP-7OI8UR8
 # default
 MAKE = $(MAKE_COMMAND)
-# defa 
-ult
+# default
 MAKECMDGOALS := all
 # environment
 QT_DEVICE_PIXEL_RATIO = auto
@@ -152,8 +152,8 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-PT8HOME = E:\Different Courses\Cisco CCN 
-A 200-301 Exam\Packet Tracer\Cisco Packet Tracer 8.0.1
+PT8HOME = E:\Different Courses\Cisco CCNA 
+ 200-301 Exam\Packet Tracer\Cisco Packet Tracer 8.0.1
 # environment
 SYSTEMROOT = C:\WINDOWS
 # automatic
@@ -179,8 +179,8 @@ SUFFIXES :=
 # environment
 SYSTEMDRIVE = C:
 # environment
-SESSIO 
-NNAME = Console
+SESSION 
+NAME = Console
 # environment
 PROCESSOR_REVISION = 8e0c
 # environment
@@ -194,7 +194,7 @@ PROCESSOR_LEVEL = 6
 # environment
 FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
-VSCODE_PID = 16864
+VSCODE_PID = 9016
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-7OI8UR8
 # variable set hash-table stats:
@@ -202,8 +202,8 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-7OI8UR8
 
 # Pattern-specific Variable Values
 
-# N 
-o pattern-specific variable values.
+# No  
+pattern-specific variable values.
 
 # Directories
 
@@ -212,46 +212,45 @@ o pattern-specific variable values.
 # E:\Java Programming\bin: could not be stat'd.
 # C:\Users\mohiu\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/mohiu/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1658177394): 4 files, no impossibilities.
 # C:\WINDOWS\System32\WindowsPowerShell\v1.0\ (key C:/WINDOWS/System32/WindowsPowerShell/v1.0/, mtime 1622898672): 30 files, no impossibilities.
-# E:\MATLAB\Ma 
-thWorks MATLAB R2020a v9.8.0.1323502\MATLAB MAIN FILES\runtime\win64 (key E:/MATLAB/MathWorks MATLAB R2020a v9.8.0.1323502/MATLAB MAIN FILES/runtime/win64, mtime 1635801164): 10 files, no impossibilities.
+# E:\MATLAB\Math 
+Works MATLAB R2020a v9.8.0.1323502\MATLAB MAIN FILES\runtime\win64 (key E:/MATLAB/MathWorks MATLAB R2020a v9.8.0.1323502/MATLAB MAIN FILES/runtime/win64, mtime 1635801164): 10 files, no impossibilities.
 # C:\WINDOWS\System32\Wbem (key C:/WINDOWS/System32/Wbem, mtime 1652318381): 154 files, no impossibilities.
-# . (key c:/Users/mohiu/OneDrive - Military Institute of Science and Technology (MIST)/Desktop/My Codes, mtime 1659632289): 82 files, no impossibilities.
-# C:\Users\mohiu\.dotnet\tools: could not be  
-stat'd.
+# . (key c:/Users/mohiu/OneDrive - Military Institute of Science and Technology (MIST)/Desktop/My Codes, mtime 1659709265): 84 files, no impossibilities.
+# C:\Users\mohiu\.dotnet\tools: could not be stat'd.
 # C:\Program Files\CodeBlocks\MinGW\bin: could not be stat'd.
 # C:\ProgramData\chocolatey\bin (key C:/ProgramData/chocolatey/bin, mtime 1647470676): 13 files, no impossibilities.
 # C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1619346642): 11 files, no impossibilities.
 # C:\MinGW\bin (key C:/MinGW/bin, mtime 1636360082): 417 files, no impossibilities.
 # C:\WINDOWS\System32\OpenSSH\: could not be stat'd.
-# C:\Users\mohiu\AppData\Local\GitHubDesktop\bin (key C:/Users/mohiu/AppData/Loca 
-l/GitHubDesktop/bin, mtime 1634913280): 4 files, no impossibilities.
-# C:\Users\mohiu\AppData\Local\Microsoft\WindowsApps (key C:/Users/mohiu/AppData/Local/Microsoft/WindowsApps, mtime 1659627536): 30 files, no impossibilities.
+# C:\Users\mohiu\AppData\Local\GitHubDesktop\bin (key C:/Users/mohiu/AppData/Local/ 
+GitHubDesktop/bin, mtime 1634913280): 4 files, no impossibilities.
+# C:\Users\mohiu\AppData\Local\Microsoft\WindowsApps (key C:/Users/mohiu/AppData/Local/Microsoft/WindowsApps, mtime 1659706557): 30 files, no impossibilities.
 # C:\Program Files\Java\jdk-17\bin: could not be stat'd.
 # C:\Program Files\Microsoft SQL Server\130\Tools\Binn\ (key C:/Program Files/Microsoft SQL Server/130/Tools/Binn/, mtime 1598705289): 4 files, no impossibilities.
-# C:\WINDOWS (key C:/WINDOWS, mtime 1614337467): 124 files, no  
-impossibilities.
+# C:\WINDOWS (key C:/WINDOWS, mtime 1614337467): 124 files, no impossibilities.
 # C:\Program Files\Intel\Intel(R) Management Engine Components\DAL (key C:/Program Files/Intel/Intel(R) Management Engine Components/DAL, mtime 1613750106): 4 files, no impossibilities.
 # E:\MATLAB\MathWorks MATLAB R2020a v9.8.0.1323502\MATLAB MAIN FILES\polyspace\bin (key E:/MATLAB/MathWorks MATLAB R2020a v9.8.0.1323502/MATLAB MAIN FILES/polyspace/bin, mtime 1635801513): 82 files, no impossibilities.
 # C:\Python 9\Scripts\: could not be stat'd.
-# C:\Program Files\JetBrains\PyCharm Community Edition 2020.3.3\bin: could not be stat'd.
+# C:\Program Files\JetBrains\PyCharm Community  
+Edition 2020.3.3\bin: could not be stat'd.
 # C:\Python 9\: could not be stat'd.
 # C:\oraclexe\app\oracle\product\11.2.0\server\bin (key C:/oraclexe/app/oracle/product/11.2.0/server/bin, mtime 1651000202): 398 files, no impossibilities.
 # E:\MATLAB\MathWorks MATLAB R2020a v9.8.0.1323502\MATLAB MAIN FILES\bin (key E:/MATLAB/MathWorks MATLAB R2020a v9.8.0.1323502/MATLAB MAIN FILES/bin, mtime 1635801308): 19 files, no impossibilities.
-# C:\Program Files (x86)\CodeBlocks\MinGW\bin (key C:/Program Files (x86)/C 
-odeBlocks/MinGW/bin, mtime 1580212208): 55 files, no impossibilities.
+# C:\Program Files (x86)\CodeBlocks\MinGW\bin (key C:/Program Files (x86)/Cod 
+eBlocks/MinGW/bin, mtime 1580212208): 55 files, no impossibilities.
 # C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1647188398): 8 files, no impossibilities.
 # C:\WINDOWS\system32 (key C:/WINDOWS/system32, mtime 1659419380): 2889 files, no impossibilities.
 # E:\Softwares\Database\dbhomeXE\bin: could not be stat'd.
 # E:\Java\bin (key E:/Java/bin, mtime 1634058320): 123 files, no impossibilities.
-# C:\Program Files\Python39\ (key C:/Program Files/Python39/, mtime 1646774738): 4 files, no imp 
-ossibilities.
+# C:\Program Files\Python39\ (key C:/Program Files/Python39/, mtime 1646774738): 4 files, no impos 
+sibilities.
 # C:\instantclient_21_6 (key C:/instantclient_21_6, mtime 1655616589): 32 files, no impossibilities.
 # C:\Program Files\Python39\Scripts\ (key C:/Program Files/Python39/Scripts/, mtime 1646774699): 8 files, no impossibilities.
 # C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL (key C:/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL, mtime 1613750106): 7 files, no impossibilities.
-# C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin3 
-2/bin, mtime 1655663218): 12 files, no impossibilities.
+# C:\Program Files (x86)\GnuWin32\bin (key C:/Program Files (x86)/GnuWin32/ 
+bin, mtime 1655663218): 12 files, no impossibilities.
 
-# 4524 files, no impossibilities in 36 directories.
+# 4526 files, no impossibilities in 36 directories.
 
 # Implicit Rules
 
@@ -274,8 +273,8 @@ all:
 #  Modification time never checked.
 #  File has not been updated.
 
-# 
- Not a target:
+# N 
+ot a target:
 makefile:
 #  A default, MAKEFILES, or -include/sinclude makefile.
 #  Implicit rule search has been done.
@@ -294,10 +293,8 @@ makefile:
 # Not a target:
 GNUmakefile:
 #  A default, MAKEFILES, or -include/sinclude makefile.
-#  Implicit rule  
-make.exe: *** No rule to make target `all'.  Stop.
-
-search has been done.
+#  Implicit rule se 
+arch has been done.
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
@@ -315,8 +312,11 @@ search has been done.
 # # of strings in strcache: 0
 # # of strcache buffers: 0
 # strcache size: total = 0 / max = 0 / min = 4096 / avg = 0
-# strcache free: total = 0 / max = 0 / min = 4096 / avg = 0
+# strcache free: total = 0 / max = 0 / min = 4096 / a 
+make.exe: *** No rule to make target `all'.  Stop.
 
-# Finished Make data base on Thu Aug 04 23:06:30 2022
+vg = 0
+
+# Finished Make data base on Fri Aug 05 20:39:44 2022
 
  
