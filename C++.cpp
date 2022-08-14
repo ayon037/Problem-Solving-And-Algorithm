@@ -11,35 +11,20 @@ const Tf EPS = 1e-9;
 int main()
 {
     Charpoka;
-    int n;
-    cin >> n;
-    vector<int> v;
-    int tot = 0;
-    while (n--)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int a;
-        cin >> a;
-        v.pb(a);
-        tot += a;
-    }
-    sort(v.begin(), v.end());
-    int sum = 0;
-    if (v.size() % 2 == 0)
-    {
-
-        for (int i = 0; i < (v.size() / 2); i++)
+        string s1, s2, s3 = "";
+        cin >> s1 >> s2;
+        s3 = s1 + s2;
+        sort(s3.begin(), s3.end());
+        for (int i = 0; i < s1.size(); i++)
         {
-            sum += v[i];
+            cout << s3[i];
         }
+        cout << endl;
     }
-    else
-    {
-        for (int i = 0; i < (v.size() / 2) + 1; i++)
-        {
-            sum += v[i];
-        }
-    }
-    cout << tot - sum << endl;
     return 0;
 }
 
