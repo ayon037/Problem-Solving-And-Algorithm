@@ -15,15 +15,25 @@ int main()
     cin >> t;
     while (t--)
     {
-        string s1, s2, s3 = "";
-        cin >> s1 >> s2;
-        s3 = s1 + s2;
-        sort(s3.begin(), s3.end());
-        for (int i = 0; i < s1.size(); i++)
+        int n;
+        cin >> n;
+        map<char, int> mp;
+        int cnt = 0;
+        for (int i = 1; i <= n; i++)
         {
-            cout << s3[i];
+            char ch;
+            cin >> ch;
+            mp[ch]++;
+            if (mp[ch] == 1)
+            {
+                cnt += 2;
+            }
+            else
+            {
+                cnt++;
+            }
         }
-        cout << endl;
+        cout << cnt << endl;
     }
     return 0;
 }
