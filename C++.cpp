@@ -12,34 +12,77 @@ const ll MX = 1e5 + 123;
 int main()
 {
     Charpoka;
-    int n, f, d;
-    cin >> n >> f >> d;
-    vector<int> v;
-    map<int, vector<int>> mp;
-    for (int i = 0; i < n; i++)
+    int n;
+    cin >> n;
+    char arr[n + 1][n + 1];
+    for (int i = 1; i <= n; i++)
     {
-        int a;
-        cin >> a;
-        v.push_back(a);
-    }
-    int flag = 0;
-    for (int i = 0; i < n; i++)
-    {
-        mp[v[i] % d].push_back(v[i]);
-        if (mp[v[i] % d].size() == f)
+        for (int j = 1; j <= n; j++)
         {
-            flag = 1;
-            cout << "Yes" << endl;
-            for (int j = 0; j < f; j++)
-            {
-                cout << mp[v[i] % d][j] << " ";
-            }
-            break;
+            cin >> arr[i][j];
         }
     }
-    if (flag == 0)
+    char c1 = arr[1][1], c2 = arr[1][2];
+    int flag = 0, idx = n;
+    for (int i = 1; i <= n; i++)
     {
-        cout << "No";
+        if (arr[i][i] != c1)
+        {
+            flag = 1;
+            break;
+        }
+        if (arr[i][n - i + 1] != c1)
+        {
+            flag = 1;
+            break;
+        }
+        // else
+        // {
+        //     cout << "(" << i << ", " << i << " )" << arr[i][i] << " "
+        //          << "(" << i << ", " << n - i + 1 << " )" << arr[i][n - i + 1] << endl;
+        // }
+    }
+    // cout << "flag = " << flag << endl;
+    if (flag == 1)
+    {
+        cout << "NO";
+    }
+    else
+    {
+        if (c2 == c1)
+        {
+            flag = 1;
+        }
+        else
+        {
+            idx = n;
+            for (int i = 1; i <= n; i++)
+            {
+                for (int j = 1; j <= n; j++)
+                {
+                    if ((j != i) && j != (n - i + 1))
+                    {
+                        if (arr[i][j] == c1 || arr[i][j] != c2)
+                        {
+                            flag = 1;
+                            break;
+                        }
+                    }
+                }
+                if (flag == 1)
+                {
+                    break;
+                }
+            }
+        }
+        if (flag == 1)
+        {
+            cout << "NO";
+        }
+        else
+        {
+            cout << "YES";
+        }
     }
     return 0;
 }
