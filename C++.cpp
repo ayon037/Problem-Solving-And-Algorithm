@@ -9,40 +9,68 @@ typedef long double Tf;
 const Tf EPS = 1e-9;
 const ll MX = 1e5 + 123;
 
-unordered_map<ll, ll> mp;
-
-ll dp(ll a)
-{
-    if (a < 1)
-    {
-        return 0;
-    }
-    if (a == 1)
-    {
-        return 1;
-    }
-    if (mp.count(a))
-    {
-        return mp[a];
-    }
-    ll cnt = max(a, (dp(a / 2) + dp(a / 3) + dp(a / 4)));
-    mp[a] = cnt;
-    return cnt;
-}
 int main()
 {
-
-    Charpoka;
-    // int t;
-    // cin >> t;
-    ll a;
-    while (cin >> a)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        // // ll a;
-        // cin >> a;
-        ll ans = dp(a);
-        cout << ans << endl;
-        mp.clear();
+        vector<int> v, v2;
+        int n, mx = INT_MIN, mn = INT_MAX;
+        cin >> n;
+        map<int, int> mp;
+        int pos;
+        for (int i = 0; i < n; i++)
+        {
+            int a;
+            cin >> a;
+            mp[a]++;
+
+            if (a > mx)
+            {
+                pos = i;
+            }
+
+            mx = max(mx, a);
+            mn = min(mn, a);
+
+            v.push_back(a);
+        }
+        if (n == 1 || n == 2)
+        {
+            cout << "YES" << endl;
+        }
+        else
+        {
+            int flag = 0;
+            for (int i = 0; i < pos; i++)
+            {
+                if (v[i] > v[i + 1])
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 0)
+            {
+                for (int i = pos; i < v.size() - 1; i++)
+                {
+                    if (v[i] < v[i + 1])
+                    {
+                        flag = 1;
+                        break;
+                    }
+                }
+            }
+            if (flag == 1)
+            {
+                cout << "NO" << endl;
+            }
+            else
+            {
+                cout << "YES" << endl;
+            }
+        }
     }
     return 0;
 }
