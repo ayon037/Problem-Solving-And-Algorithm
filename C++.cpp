@@ -9,68 +9,80 @@ typedef long double Tf;
 const Tf EPS = 1e-9;
 const ll MX = 1e5 + 123;
 
+int Prime[2000];
+
+void Find_Prime(int high)
+{
+    for (int i = 2; i <= high; i++)
+    {
+        if (Prime[i] == 0)
+        {
+            for (int j = i * i; j <= high; j += i)
+            {
+                Prime[j] = 1;
+            }
+        }
+    }
+}
+
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
+    int n, k;
+    cin >> n >> k;
+    memset(Prime, 0, sizeof(Prime));
+    Find_Prime(n);
+
+    int cnt = 0, flag = 0;
+    for (int i = 2; i <= n; i++)
     {
-        vector<int> v, v2;
-        int n, mx = INT_MIN, mn = INT_MAX;
-        cin >> n;
-        map<int, int> mp;
-        int pos;
-        for (int i = 0; i < n; i++)
+        int p = 0, sum = 0;
+        if (Prime[i] == 0)
         {
-            int a;
-            cin >> a;
-            mp[a]++;
-
-            if (a > mx)
+            // cout << i << " ";
+            for (int j = 2; j <= n; j++)
             {
-                pos = i;
-            }
-
-            mx = max(mx, a);
-            mn = min(mn, a);
-
-            v.push_back(a);
-        }
-        if (n == 1 || n == 2)
-        {
-            cout << "YES" << endl;
-        }
-        else
-        {
-            int flag = 0;
-            for (int i = 0; i < pos; i++)
-            {
-                if (v[i] > v[i + 1])
+                if (Prime[j] == 0)
                 {
-                    flag = 1;
-                    break;
-                }
-            }
-            if (flag == 0)
-            {
-                for (int i = pos; i < v.size() - 1; i++)
-                {
-                    if (v[i] < v[i + 1])
+                    // cout << "(I , J) = "
+                    //      << "(" << i << " , " << j << ")"
+                    //      << " , ";
+                    p++;
+                    sum += j;
+                    // cout << sum << " , " << p << endl;
+                    if (p == 2)
                     {
-                        flag = 1;
-                        break;
+                        // cout << "I = " << i << ", Sum = " << sum + 1 << ", P = " << p << endl;
+                        if (sum + 1 == i)
+                        {
+                            cnt++;
+                            break;
+                        }
+                        else if (sum + 1 > i)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            p = 1;
+                            sum = j;
+                        }
                     }
                 }
             }
-            if (flag == 1)
-            {
-                cout << "NO" << endl;
-            }
-            else
-            {
-                cout << "YES" << endl;
-            }
         }
+        if (cnt == k)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if (flag == 1)
+    {
+        cout << "YES";
+    }
+    else
+    {
+        cout << "NO";
     }
     return 0;
 }
