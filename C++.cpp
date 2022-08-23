@@ -16,199 +16,21 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, k, b, s;
-        cin >> n >> k >> b >> s;
-        ll prod = k * b;
-        if (s == prod)
+        ll a, b, c, d;
+        cin >> a >> b >> c >> d;
+        ll x = a * d, y = b * c;
+        if (x == y)
         {
-            for (int i = 1; i <= n; i++)
-            {
-                if (i == 1)
-                {
-                    cout << prod << " ";
-                }
-                else
-                {
-                    cout << 0 << " ";
-                }
-            }
+            cout << 0 << endl;
         }
-        else if (s < prod)
+        else if (y != 0 && x % y == 0 || x != 0 && y % x == 0)
         {
-            cout << -1;
+            cout << 1 << endl;
         }
         else
         {
-            if (b == 0 || k == 0)
-            {
-                if (s == 0)
-                {
-                    for (int i = 1; i <= n; i++)
-                    {
-                        cout << 0 << " ";
-                    }
-                }
-                else
-                {
-                    if (s < k)
-                    {
-                        for (int i = 1; i <= n; i++)
-                        {
-                            if (i == 1)
-                            {
-                                cout << s << " ";
-                            }
-                            else
-                            {
-                                cout << 0 << " ";
-                            }
-                        }
-                    }
-                    else if (s == k)
-                    {
-                        if (n - 1 > 0)
-                        {
-                            for (int i = 1; i <= n; i++)
-                            {
-                                if (i == 1)
-                                {
-                                    cout << k - 1 << " ";
-                                }
-                                else if (i == n)
-                                {
-                                    cout << 1 << " ";
-                                }
-                                else
-                                {
-                                    cout << 0 << " ";
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (s > (k - 1) * n)
-                        {
-                            cout << -1;
-                        }
-                        else
-                        {
-                            ll sum = 0;
-                            bool flag = 0;
-                            for (int i = 1; i <= n; i++)
-                            {
-                                sum += (k - 1);
-                                if (sum < s && flag == 0)
-                                {
-                                    cout << k - 1 << " ";
-                                }
-                                else if (sum == s && flag == 0)
-                                {
-                                    cout << k - 1 << " ";
-                                    flag = 1;
-                                }
-                                else if (sum > s && flag == 0)
-                                {
-                                    sum -= (k - 1);
-                                    cout << s - sum << " ";
-                                    flag = 1;
-                                }
-                                else
-                                {
-                                    cout << 0 << " ";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                ll val = prod + (k - 1);
-                ll max_sum = (k - 1) * (n - 1);
-                if (s > (val + max_sum))
-                {
-                    cout << -1;
-                }
-                else
-                {
-                    ll peak = prod + (k - 1) * (n - 1);
-                    if (s <= peak)
-                    {
-                        ll left = s - prod;
-                        ll sum = 0;
-                        bool flag = 0;
-                        for (int i = 1; i <= n; i++)
-                        {
-                            if (i == 1)
-                            {
-                                cout << prod << " ";
-                            }
-                            else
-                            {
-                                sum += (k - 1);
-                                if (sum < left && flag == 0)
-                                {
-                                    cout << k - 1 << " ";
-                                }
-                                else if (sum == left && flag == 0)
-                                {
-                                    cout << k - 1 << " ";
-                                    flag = 1;
-                                }
-                                else if (sum > left && flag == 0)
-                                {
-                                    sum -= (k - 1);
-                                    cout << left - sum << " ";
-                                    flag = 1;
-                                }
-                                else
-                                {
-                                    cout << 0 << " ";
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        ll sum = 0;
-                        bool flag = 0;
-                        ll left = s - val;
-                        for (int i = 1; i <= n; i++)
-                        {
-                            if (i == 1)
-                            {
-                                cout << val << " ";
-                            }
-                            else
-                            {
-                                sum += (k - 1);
-                                if (sum < left && flag == 0)
-                                {
-                                    cout << k - 1 << " ";
-                                }
-                                else if (sum == left && flag == 0)
-                                {
-                                    cout << k - 1 << " ";
-                                    flag = 1;
-                                }
-                                else if (sum > left && flag == 0)
-                                {
-                                    sum -= (k - 1);
-                                    cout << left - sum << " ";
-                                    flag = 1;
-                                }
-                                else
-                                {
-                                    cout << 0 << " ";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            cout << 2 << endl;
         }
-        cout << endl;
     }
     return 0;
 }
