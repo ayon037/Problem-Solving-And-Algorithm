@@ -16,21 +16,17 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll a, b, c, d;
-        cin >> a >> b >> c >> d;
-        ll x = a * d, y = b * c;
-        if (x == y)
+        int n;
+        cin >> n;
+        vector<ll> v;
+        for (int i = 0; i < n; i++)
         {
-            cout << 0 << endl;
+            ll a;
+            cin >> a;
+            v.pb(a);
         }
-        else if (y != 0 && x % y == 0 || x != 0 && y % x == 0)
-        {
-            cout << 1 << endl;
-        }
-        else
-        {
-            cout << 2 << endl;
-        }
+        sort(v.begin(), v.end());
+        cout << (v[n - 1] - v[0]) + (v[n - 2] - v[1]) << endl;
     }
     return 0;
 }
