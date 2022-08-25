@@ -9,14 +9,34 @@ typedef long double Tf;
 const Tf EPS = 1e-9;
 const ll MX = 1e5 + 123;
 
-/// Inclusion-Exclusion Method
-
 int main()
 {
     Charpoka;
-    ll n;
-    cin >> n;
-    cout << n - (n / 2) - (n / 3) - (n / 5) - (n / 7) + (n / 6) + (n / 10) + (n / 14) + (n / 15) + (n / 21) + (n / 35) - (n / 30) - (n / 42) - (n / 70) - (n / 105) + (n / 210);
+    int n, m;
+    cin >> n >> m;
+    map<string, string> mp;
+    for (int i = 1; i <= m; i++)
+    {
+        string s1, s2;
+        cin >> s1 >> s2;
+        mp[s1] = s2;
+    }
+    string str = "";
+    for (int i = 1; i <= n; i++)
+    {
+        string s;
+        cin >> s;
+        string store = mp[s];
+        if (store.size() < s.size())
+        {
+            str = str + store + " ";
+        }
+        else
+        {
+            str = str + s + " ";
+        }
+    }
+    cout << str;
     return 0;
 }
 
