@@ -14,29 +14,41 @@ int main()
     Charpoka;
     int n, m;
     cin >> n >> m;
-    map<string, string> mp;
-    for (int i = 1; i <= m; i++)
-    {
-        string s1, s2;
-        cin >> s1 >> s2;
-        mp[s1] = s2;
-    }
-    string str = "";
+    int pos = 0;
+    int mx = 0;
+    vector<int> v;
     for (int i = 1; i <= n; i++)
     {
-        string s;
-        cin >> s;
-        string store = mp[s];
-        if (store.size() < s.size())
+        int a;
+        cin >> a;
+        if (m < a)
         {
-            str = str + store + " ";
-        }
-        else
-        {
-            str = str + s + " ";
+            if(a%m==0)
+            {
+                a=a/m;
+            }
+            else
+            {
+                a=(a/m)+1;
+            }
+            //cout<<a<<" = After Ceiling "<<i<<endl;
+            if (a >= mx)
+            {
+                //cout<<a<<" = Hello "<<i<<endl;
+                mx = a;
+                pos = i;
+            }
         }
     }
-    cout << str;
+    if(pos==0)
+    {
+        cout<<n;
+    }
+    else
+    {
+        cout<<pos;
+    }
+
     return 0;
 }
 
