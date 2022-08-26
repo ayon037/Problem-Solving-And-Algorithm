@@ -12,21 +12,46 @@ const ll MX = 1e5 + 123;
 int main()
 {
     Charpoka;
-    int n;
-    cin >> n;
-    while (n--)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        int t;
-        cin >> t;
-        cout << 2 << endl;
-        for (int i = 1; i <= t; i += 2)
+        int arr[2][2];
+        int cnt = 0;
+        for (int i = 0; i < 2; i++)
         {
-            for (int j = i; j <= t; j *= 2)
+            for (int j = 0; j < 2; j++)
             {
-                cout << j << " ";
+                cin >> arr[i][j];
+                if (arr[i][j] == 1)
+                {
+                    cnt++;
+                }
             }
         }
-        cout << endl;
+        if (cnt == 0)
+        {
+            cout << 0 << endl;
+        }
+        else
+        {
+            if (cnt == 1)
+            {
+                cout << 1 << endl;
+            }
+            else if (cnt == 2)
+            {
+                cout << 1 << endl;
+            }
+            else if (cnt == 3)
+            {
+                cout << 1 << endl;
+            }
+            else
+            {
+                cout << 2 << endl;
+            }
+        }
     }
     return 0;
 }
