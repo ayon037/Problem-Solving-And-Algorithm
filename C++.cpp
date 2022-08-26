@@ -14,34 +14,20 @@ int main()
     Charpoka;
     int n;
     cin >> n;
-    char board[n][n];
-    bool even = true;
-
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            cin >> board[i][j];
-    for (int i = 0; i < n; i++)
+    while (n--)
     {
-        int c = 0;
-        for (int j = 0; j < n; j++)
+        int t;
+        cin >> t;
+        cout << 2 << endl;
+        for (int i = 1; i <= t; i += 2)
         {
-            if (i - 1 >= 0 and board[i - 1][j] == 'o')
-                c++;
-            if (i + 1 < n and board[i + 1][j] == 'o')
-                c++;
-            if(j - 1 >= 0 and board[i][j - 1] == 'o')
-                c++;
-            if(j + 1 < n and board[i][j + 1] == 'o')
-                c++;
-            if (c % 2 == 1)
-                even = false;
+            for (int j = i; j <= t; j *= 2)
+            {
+                cout << j << " ";
+            }
         }
+        cout << endl;
     }
-
-    if (even)
-        cout << "YES" << endl;
-    else
-        cout << "NO" << endl;
     return 0;
 }
 
