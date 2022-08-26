@@ -16,42 +16,41 @@ int main()
     cin >> t;
     while (t--)
     {
-        int arr[2][2];
-        int cnt = 0;
-        for (int i = 0; i < 2; i++)
+        int n;
+        cin >> n;
+        vector<int> v;
+        for (int i = 1; i <= n; i++)
         {
-            for (int j = 0; j < 2; j++)
+            int a;
+            cin >> a;
+            v.push_back(a);
+        }
+        for (int i = 0; i < n; i++)
+        {
+            int p;
+            string s;
+            cin >> p >> s;
+            for (int j = 0; j < s.size(); j++)
             {
-                cin >> arr[i][j];
-                if (arr[i][j] == 1)
+                if (s[j] == 'D')
                 {
-                    cnt++;
+                    v[i] = (v[i] + 1) % 10;
+                }
+                else
+                {
+                    v[i] = v[i] - 1;
+                    if (v[i] < 0)
+                    {
+                        v[i] = 9;
+                    }
                 }
             }
         }
-        if (cnt == 0)
+        for (int i = 0; i < v.size(); i++)
         {
-            cout << 0 << endl;
+            cout << v[i] << " ";
         }
-        else
-        {
-            if (cnt == 1)
-            {
-                cout << 1 << endl;
-            }
-            else if (cnt == 2)
-            {
-                cout << 1 << endl;
-            }
-            else if (cnt == 3)
-            {
-                cout << 1 << endl;
-            }
-            else
-            {
-                cout << 2 << endl;
-            }
-        }
+        cout << endl;
     }
     return 0;
 }
