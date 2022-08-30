@@ -18,39 +18,62 @@ int main()
     {
         int n;
         cin >> n;
-        vector<int> v;
-        for (int i = 1; i <= n; i++)
+        map<string, int> mp;
+        vector<string> v1, v2, v3;
+        int cnt1 = 0, cnt2 = 0, cnt3 = 0;
+        for (int i = 0; i < n; i++)
         {
-            int a;
-            cin >> a;
-            v.push_back(a);
+            string s;
+            cin >> s;
+            mp[s]++;
+            v1.push_back(s);
         }
         for (int i = 0; i < n; i++)
         {
-            int p;
             string s;
-            cin >> p >> s;
-            for (int j = 0; j < s.size(); j++)
+            cin >> s;
+            mp[s]++;
+            v2.push_back(s);
+        }
+        for (int i = 0; i < n; i++)
+        {
+            string s;
+            cin >> s;
+            mp[s]++;
+            v3.push_back(s);
+            if (mp[s] == 1)
             {
-                if (s[j] == 'D')
-                {
-                    v[i] = (v[i] + 1) % 10;
-                }
-                else
-                {
-                    v[i] = v[i] - 1;
-                    if (v[i] < 0)
-                    {
-                        v[i] = 9;
-                    }
-                }
+                cnt3 += 3;
+            }
+            else if (mp[s] == 2)
+            {
+                cnt3 += 1;
             }
         }
-        for (int i = 0; i < v.size(); i++)
+
+        for (int i = 0; i < v1.size(); i++)
         {
-            cout << v[i] << " ";
+            if (mp[v1[i]] == 1)
+            {
+                cnt1 += 3;
+            }
+            else if (mp[v1[i]] == 2)
+            {
+                cnt1 += 1;
+            }
         }
-        cout << endl;
+        for (int i = 0; i < v2.size(); i++)
+        {
+            if (mp[v2[i]] == 1)
+            {
+                cnt2 += 3;
+            }
+            else if (mp[v2[i]] == 2)
+            {
+                cnt2 += 1;
+            }
+        }
+        cout << cnt1 << " " << cnt2 << " " << cnt3 << endl;
     }
     return 0;
 }
