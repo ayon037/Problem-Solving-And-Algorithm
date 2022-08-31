@@ -12,68 +12,40 @@ const ll MX = 1e5 + 123;
 int main()
 {
     Charpoka;
-    int t;
-    cin >> t;
-    while (t--)
+    ll t;
+    cin>>t;
+    while(t--)
     {
-        int n;
-        cin >> n;
-        map<string, int> mp;
-        vector<string> v1, v2, v3;
-        int cnt1 = 0, cnt2 = 0, cnt3 = 0;
-        for (int i = 0; i < n; i++)
+        ll n;
+        cin>>n;
+        string s;
+        cin>>s;
+        ll sum=0;
+        vector<ll>v;
+        for(ll i=0;i<s.size();i++)
         {
-            string s;
-            cin >> s;
-            mp[s]++;
-            v1.push_back(s);
-        }
-        for (int i = 0; i < n; i++)
-        {
-            string s;
-            cin >> s;
-            mp[s]++;
-            v2.push_back(s);
-        }
-        for (int i = 0; i < n; i++)
-        {
-            string s;
-            cin >> s;
-            mp[s]++;
-            v3.push_back(s);
-            if (mp[s] == 1)
+            if(s[i]=='L')
             {
-                cnt3 += 3;
+                sum+=i;
+                v.pb(n-i-1-i);
             }
-            else if (mp[s] == 2)
+            else
             {
-                cnt3 += 1;
+                sum+=(n-i-1);
+                v.pb(i-(n-i-1));
             }
         }
+        sort(v.rbegin(),v.rend());
+        for(ll k=0;k<n;k++)
+        {
+            if(v[k]>0)
+            {
+                sum+=v[k];
+            }
+            cout<<sum<<" ";
+        }
+        cout<<endl;
 
-        for (int i = 0; i < v1.size(); i++)
-        {
-            if (mp[v1[i]] == 1)
-            {
-                cnt1 += 3;
-            }
-            else if (mp[v1[i]] == 2)
-            {
-                cnt1 += 1;
-            }
-        }
-        for (int i = 0; i < v2.size(); i++)
-        {
-            if (mp[v2[i]] == 1)
-            {
-                cnt2 += 3;
-            }
-            else if (mp[v2[i]] == 2)
-            {
-                cnt2 += 1;
-            }
-        }
-        cout << cnt1 << " " << cnt2 << " " << cnt3 << endl;
     }
     return 0;
 }
