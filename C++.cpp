@@ -18,34 +18,39 @@ int main()
     {
         ll n;
         cin>>n;
-        string s;
-        cin>>s;
-        ll sum=0;
-        vector<ll>v;
-        for(ll i=0;i<s.size();i++)
+        if(n%4==0)
         {
-            if(s[i]=='L')
+            for(ll i=0;i<n;i++)
             {
-                sum+=i;
-                v.pb(n-i-1-i);
-            }
-            else
-            {
-                sum+=(n-i-1);
-                v.pb(i-(n-i-1));
+                cout<<i<<" ";
             }
         }
-        sort(v.rbegin(),v.rend());
-        for(ll k=0;k<n;k++)
+        else if(n%4==1)
         {
-            if(v[k]>0)
+            cout<<0<<" ";
+            for(int i=0;i<n-1;i++)
             {
-                sum+=v[k];
+                cout<<i+2<<" ";
             }
-            cout<<sum<<" ";
+            
+        }
+        else if(n%4==2)
+        {
+            cout<<2<<" "<<3<<" "<<1<<" "<<4<<" "<<12<<" "<<8<<" ";
+            for(int i=0;i<n-6;i++)
+            {
+                cout<<14+i<<" ";
+            }
+        }
+        else
+        {
+            cout<<2<<" "<<1<<" "<<3<<" ";
+            for(int i=0;i<n-3;i++)
+            {
+                cout<<4+i<<" ";
+            }
         }
         cout<<endl;
-
     }
     return 0;
 }
