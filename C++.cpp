@@ -8,28 +8,36 @@ using namespace std;
 typedef long double Tf;
 const Tf EPS = 1e-9;
 const ll MX = 1e5 + 123;
-int main() {
-  Charpoka;
-  int t;
-  cin >> t;
-  while (t--) 
-  {
-      int n, m, sx, sy, d;
-      cin >> n >> m >> sx >> sy >> d;
-      if (sx - d > 1 && sy + d < m) 
-      {
-          cout << n + m - 2 << endl;
-      }   
-      else if (sy - d > 1 && sx + d < n) 
-      {
-          cout << n + m - 2 << endl;
-      } 
-      else 
-      {
-          cout << -1 << endl;
-      }
-  }
-  return 0;
+int main() 
+{
+    Charpoka;
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string s;
+        cin>>s;
+        ll cnt=0;
+        map<char,int>mp;
+        for(int i=0;i<s.size();i++)
+        {
+            mp[s[i]]++;
+            if(mp.size()==4)
+            {
+                cnt++;
+                mp.clear();
+                mp[s[i]]++;
+            }
+            
+        }
+        if(mp.size()>=1)
+        {
+            cnt++;
+        }
+        cout<<cnt<<endl;
+    }
+    return 0;
+  
 }
 /*
 
