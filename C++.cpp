@@ -11,79 +11,40 @@ const ll MX = 1e5 + 123;
 int main() 
 {
     Charpoka;
-    int t;
-    cin>>t;
-    while(t--)
+    int n,k;
+    cin>>n>>k;
+    vector< pair<int,int> >v;
+    for(int i=1;i<=n;i++)
     {
-        int n;
-        cin>>n;
-        string s;
-        cin>>s;
-        string str="";
-        for(int i=0;i<s.size();i++)
-        {
-            vector<char>v;
-            v.pb(s[i]);
-            if(i+3<s.size())
-            {
-                for(int j=i+1;;j++)
-                {
-                    v.pb(s[j]);
-                    v.pb(s[j+1]);
-                    v.pb(s[j+2]);
-                    break;
-                }
-                if(v[2]=='0' && v[3]=='0')
-                {
-                    int num=(int)s[i]-48;
-                    str+=(char)num+96;
-                }
-                else if(v[2]=='0' && v[3]!='0')
-                {
-                    int num=(int)s[i]-48;
-                    int val=(int)s[i+1]-48;
-                    num*=10;
-                    num+=val;
-                    str+=(char)num+96;
-                    i+=2;
-                }
-                else 
-                {
-                    int num=(int)s[i]-48;
-                    str+=(char)num+96;
-                }
-            }
-            else 
-            {
-                if(i+2<s.size())
-                {
-                    if(s[i+2]=='0')
-                    {
-                        int num=(int)s[i]-48;
-                        int p=(int)s[i+1]-48;
-                        num*=10;
-                        num+=p;
-                        str+=(char)num+96;
-                        i+=2;
-                    }
-                    else
-                    {
-                        int num=(int)s[i]-48;
-                        str+=(char)num+96;
-                    }
-                }
-                else
-                {
-                    int num=(int)s[i]-48;
-                    str+=(char)num+96;
-                }
-            }
-        }
-        cout<<str<<endl;
+        int a;
+        cin>>a;
+        v.pb({a,i});
     }
-
+    int sum=0;
+    sort(v.begin(),v.end());
+    int i=0;
+    vector<int>select;
+    while(i<v.size())
+    {
+        sum+=v[i].first;
+        if(sum<=k)
+        {
+            int num=v[i].second;
+            select.pb(num);
+        }
+        else
+        {
+            break;
+        }
+        i++;
+    }
+   
+    cout<<select.size()<<endl;
+    for(int j=0;j<select.size();j++)
+    {
+        cout<<select[j]<<" ";
+    }
     return 0;
-
 }
 /*
 
