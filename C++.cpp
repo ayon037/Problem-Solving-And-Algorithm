@@ -11,39 +11,43 @@ const ll MX = 1e5 + 123;
 int main() 
 {
     Charpoka;
-    int n,k;
-    cin>>n>>k;
-    vector< pair<int,int> >v;
+    ll n,d;
+    cin>>n>>d;
+    vector<int>v;
     for(int i=1;i<=n;i++)
     {
         int a;
         cin>>a;
-        v.pb({a,i});
+        v.pb(a);
     }
-    int sum=0;
-    sort(v.begin(),v.end());
-    int i=0;
-    vector<int>select;
-    while(i<v.size())
+    sort(v.rbegin(),v.rend());
+    int cnt=0,select=0;
+    for(int i=0;i<v.size();i++)
     {
-        sum+=v[i].first;
-        if(sum<=k)
+        if(v[i]>d)
         {
-            int num=v[i].second;
-            select.pb(num);
+            select++;
+            cnt++;
         }
         else
         {
-            break;
+            int div=d/v[i];
+            if(v[i]*div<=d)
+            {
+                div++;
+            }
+            cnt+=div;
+            if(cnt<=v.size())
+            {
+                select++;
+            }
+            else
+            {
+                break;
+            }
         }
-        i++;
     }
-   
-    cout<<select.size()<<endl;
-    for(int j=0;j<select.size();j++)
-    {
-        cout<<select[j]<<" ";
-    }
+    cout<<select<<endl;
     return 0;
 }
 /*
