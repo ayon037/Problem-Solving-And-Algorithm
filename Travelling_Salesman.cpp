@@ -71,6 +71,7 @@ int main()
         cout<<tsp(VISITED_ALL,1,0)<<endl;
 
     }
+    return 0;
 }
 
 /*
