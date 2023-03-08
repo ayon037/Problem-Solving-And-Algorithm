@@ -26,63 +26,64 @@ template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_ta
 typedef long double Tf;
 const Tf EPS = 1e-9;
 const ll MX = 1e8;
-const ll mx = 1000005;
-ll dp[mx];
+const int mx = 20;
+ll dp[mx][mx];
 vector<bool>Prime(MX+1,false);
+ll val=0;
 //ll m=0;
+int n;
+
+ll solve(vector<vector<ll> >&v,int row,int col)
+{
+    if(row>=n || row<0)
+    {
+        return 0;
+    }
+    if(col>=n || col<0)
+    {
+        return 0;
+    }
+    if(dp[row][col]!=-1)
+    {
+        return dp[row][col];
+    }
+    ll ans1=0,ans2=0;
+
+    if(col<=row)
+    {
+        //ans1=max(0,max(v[row][row]+v[row][row],v[row][row]+v[row][col]))+solve(v,row,col+1);
+        //ans2=max(0,max(v[row][row]+v[row][row],v[row][row]+v[row][col]))+solve(v,row+1,col);
+        ll num1=v[row][row]+v[row][row];
+        ll num2=v[row][row]+v[row][col];
+        ans1=max(val,max(num1,num2))+solve(v,row,col+1);
+        ans2=max(val,max(num1,num2))+solve(v,row+1,col);
+    }
+    return dp[row][col]=max(ans1,ans2);
+
+}
 
 int main()
 {
     Charpoka;
     TC
     {
-        ll n;
         cin>>n;
-        vector<ll>v(n+1);
-        vector< pair<ll,ll> >track,result;
-        map<ll,int>mp;
-        for(ll i=1;i<=n;i++)
+        vector< vector<ll> >biodata;
+        vector<ll>v;
+        memset(dp,-1,sizeof(dp));
+        for(int i=0;i<n;i++)
         {
-            cin>>v[i];
-            mp[v[i]]++;
-            track.pb({v[i],i});
-        }
-
-        if(mp.size()==1)
-        {
-            cout<<0<<endl;
-        }
-        else
-        {
-            if(mp[1]>0)
+            for(int j=0;j<n;j++)
             {
-                cout<<-1<<endl;
+                ll a;
+                cin>>a;
+                v.pb(a);
             }
-            else
-            {
-                sort(track.begin(),track.end());
-                while(track[0].first!=track[n-1].first)
-                {
-                    ll val=track[0].first;
-                    for(ll i=0;i<n;i++)
-                    {
-                        if(track[i].first!=val)
-                        {
-                            track[i].first=(track[i].first+val-1)/val;
-                            result.pb({track[i].second,track[0].second});
-                        }
-                    }
-                    sort(track.begin(),track.end());
-                }
-
-                cout<<result.size()<<endl;
-                for(ll i=0;i<result.size();i++)
-                {
-                    cout<<result[i].first<<" "<<result[i].second<<endl;
-                }
-            }
+            biodata.pb(v);
+            v.clear();
         }
-
+        ll p=solve(biodata,0,0);
+        cout<<p<<endl;
     }
     return 0;
 
