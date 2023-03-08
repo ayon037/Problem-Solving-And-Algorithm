@@ -26,40 +26,59 @@ template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_ta
 typedef long double Tf;
 const Tf EPS = 1e-9;
 const ll MX = 1e8;
-const int mx = 20;
-ll dp[mx][mx];
+int dist[21][21];
+int dp[21][(1<<21)];
+int n;
 vector<bool>Prime(MX+1,false);
 
-void add(int& subset,int x)
+int tsp(int VISITED_ALL,int mask,int pos)
 {
-    subset = subset^(1<<(x-1));
-}
-
-void remove(int& subset,int x)
-{
-    subset = subset^(1<<(x-1));
-}
-
-void display(int subset)
-{
-    for(int bit_no=0;bit_no<=9;bit_no++)
+    if(mask==VISITED_ALL)
     {
-        if(subset&(1<<bit_no))
+        return dist[pos][0];
+    }
+    if(dp[pos][mask]!=-1)
+    {
+        return dp[pos][mask];
+    }
+    int ans=INT_MAX;
+    for(int city=0;city<n;city++)
+    {
+        if((mask&(1<<city))==0)
         {
-            cout<<bit_no+1<<" ";
+            int newAns = dist[pos][city]+tsp(VISITED_ALL,mask|(1<<city),city);
+            ans=min(ans,newAns);
         }
     }
-    cout<<endl;
+    return dp[pos][mask]=ans;
 }
 
 int main()
 {
     Charpoka;
-    int Set = 15;
-    remove(Set,2);
-    add(Set,5);
-    display(Set);
+    TC
+    {
+        memset(dp,-1,sizeof(dp));
+        cin>>n;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                cin>>dist[i][j];
+            }
+        }
+        int VISITED_ALL=(1<<n)-1;
+        cout<<tsp(VISITED_ALL,1,0)<<endl;
 
-    return 0;
+    }
 }
+
+/*
+1
+4
+0 20 42 25
+20 0 30 34
+42 30 0 10
+25 34 10 0
+*/
 
