@@ -26,68 +26,55 @@ template <typename T> using ordered_set = tree<T, null_type, less<T>, rb_tree_ta
 typedef long double Tf;
 const Tf EPS = 1e-9;
 const ll MX = 1e8;
-const int mx = 20;
-ll dp[mx][mx];
 vector<bool>Prime(MX+1,false);
-ll val=0;
-//ll m=0;
-int n;
-
-ll solve(vector<vector<ll> >&v,int row,int col)
+int cost[21][21];
+int dp[21][(1<<21)];
+int solve(int i,int mask,int n)
 {
-    if(row>=n || row<0)
+    if(i==n)
     {
         return 0;
     }
-    if(col>=n || col<0)
+    if(dp[i][mask]!=-1)
     {
-        return 0;
+        return dp[i][mask];
     }
-    if(dp[row][col]!=-1)
+    int ans=INT_MAX;
+    for(int j=0;j<n;j++)
     {
-        return dp[row][col];
+        if(mask&(1<<j))
+        {
+            ans=min(ans,cost[j][i]+solve(i+1,(mask^(1<<j)),n));
+        }
     }
-    ll ans1=0,ans2=0;
-
-    if(col<=row)
-    {
-        //ans1=max(0,max(v[row][row]+v[row][row],v[row][row]+v[row][col]))+solve(v,row,col+1);
-        //ans2=max(0,max(v[row][row]+v[row][row],v[row][row]+v[row][col]))+solve(v,row+1,col);
-        ll num1=v[row][row]+v[row][row];
-        ll num2=v[row][row]+v[row][col];
-        ans1=max(val,max(num1,num2))+solve(v,row,col+1);
-        ans2=max(val,max(num1,num2))+solve(v,row+1,col);
-    }
-    return dp[row][col]=max(ans1,ans2);
-
+    return dp[i][mask]=ans;
 }
 
 int main()
 {
     Charpoka;
+    int n,m,x,i,j,k,q;
+    memset(dp,-1,sizeof(dp));
     TC
     {
         cin>>n;
-        vector< vector<ll> >biodata;
-        vector<ll>v;
-        memset(dp,-1,sizeof(dp));
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
             {
-                ll a;
-                cin>>a;
-                v.pb(a);
+                cin>>cost[i][j];
             }
-            biodata.pb(v);
-            v.clear();
         }
-        ll p=solve(biodata,0,0);
-        cout<<p<<endl;
+        cout<<solve(0,(1<<n)-1,n)<<endl;
     }
     return 0;
-
 }
 
 /*
+1
+4
+9 2 7 8
+6 4 3 7
+5 8 1 8
+7 6 9 4
 */
