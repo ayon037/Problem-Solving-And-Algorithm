@@ -27,67 +27,77 @@ typedef long double Tf;
 const Tf EPS = 1e-9;
 const ll MX = 1e8;
 vector<bool>Prime(MX+1,false);
-int n;
-double dp[(1<<20)];
-double prob[20][20];
+int dx[]= {0,1,-1,0,0};
+int dy[]= {0,0,0,1,-1};
 
-double pMove(int p_mask,int j,int &n)
+int num_codes(int* arr,int sz)
 {
-    int k = SetBits(p_mask);
-    ll den = (k*(k-1))/2;
-
-    double moveProb=0;
-
-    for(int fish=0;fish<n;fish++)
+    if(sz==1 || sz==0)
     {
-        if((1<<fish)&p_mask)
-        {
-            moveProb+=prob[fish+1][j+1];
-        }
+        return 1;
     }
-    return moveProb/(1.0*den);
+    int output=num_codes(arr,sz-1);
+    if(arr[sz-2]*10+arr[sz-1]<=26)
+    {
+        output+=num_codes(arr,sz-2);
+    }
+    return output;
 }
-double solve(int mask,int &n)
+
+int num_codes2(int* arr,int sz,int* dp)
 {
-    int alive=SetBits(mask);
-    if(alive==n)
+    if(sz==1 || sz==0)
     {
-        return 1.0;
+        return 1;
     }
-    if(dp[mask]> -0.9)
+    if(dp[sz]!=0)
     {
-        return dp[mask];
+        return dp[sz];
     }
-
-    double ans=0;
-    for(int fish=0;fish<n;fish++)
+    int output=num_codes(arr,sz-1);
+    if(arr[sz-2]*10+arr[sz-1]<=26)
     {
-        if(!(mask&(1<<fish)))
-        {
-            int p_mask=mask^(1<<fish);
-            double prev_day=solve(p_mask,n);
-            ans+=prev_day*pMove(p_mask,fish,n);
-        }
+        output+=num_codes(arr,sz-2);
     }
-    return dp[mask]=ans;
+    return dp[sz]=output;
 }
+
+int num_codes_i(int* input,int sz)
+{
+   int* output=new int[sz+1];
+   output[0]=1;
+   output[1]=1;
+   for(int i=2;i<=sz;i++)
+   {
+       output[i]=output[i-1];
+       if(input[i-2]*10+input[i-1]<=26)
+       {
+           output[i]+=output[i-2];
+       }
+   }
+   int ans=output[sz];
+   delete [] output;
+   return ans;
+}
+
+
 int main()
 {
     Charpoka;
-    // Codeforces Beta Round 16 (Div-02) Problem-F (Fish)
+    int n;
     cin>>n;
-    memset(dp,-1,sizeof(dp));
-    for(int i=1;i<=n;i++)
-    {
-        for(int j=1;j<=n;j++)
-        {
-            cin>>prob[i][j];
-        }
-    }
+    int arr[n+1],dp[n+1];
+    memset(dp,0,sizeof(dp));
+    string s;
+    cin>>s;
     for(int i=0;i<n;i++)
     {
-        cout<<solve((1<<i),n)<<" ";
+        arr[i+1]=s[i]-'0';
+        //cout<<s[i]-'0'<<endl;
     }
-    return 0;
+    cout<<num_codes2(arr,n,dp)<<endl;
 
 }
+
+/*
+*/
