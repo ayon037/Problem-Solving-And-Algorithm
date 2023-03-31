@@ -30,73 +30,64 @@ vector<bool>Prime(MX+1,false);
 int dx[]= {0,1,-1,0,0};
 int dy[]= {0,0,0,1,-1};
 
-int num_codes(int* arr,int sz)
+void print(int** edges,int n,int sv,bool* visited)
 {
-    if(sz==1 || sz==0)
+    cout<<sv<<endl;
+    visited[sv]=true;
+    for(int i=0;i<n;i++)
     {
-        return 1;
+        if(i==sv)
+        {
+            continue;
+        }
+        if(edges[sv][i]==1)
+        {
+            if(visited[i])
+            {
+                continue;
+            }
+            else
+            {
+                print(edges,n,i,visited);
+            }
+        }
     }
-    int output=num_codes(arr,sz-1);
-    if(arr[sz-2]*10+arr[sz-1]<=26)
-    {
-        output+=num_codes(arr,sz-2);
-    }
-    return output;
 }
-
-int num_codes2(int* arr,int sz,int* dp)
-{
-    if(sz==1 || sz==0)
-    {
-        return 1;
-    }
-    if(dp[sz]!=0)
-    {
-        return dp[sz];
-    }
-    int output=num_codes(arr,sz-1);
-    if(arr[sz-2]*10+arr[sz-1]<=26)
-    {
-        output+=num_codes(arr,sz-2);
-    }
-    return dp[sz]=output;
-}
-
-int num_codes_i(int* input,int sz)
-{
-   int* output=new int[sz+1];
-   output[0]=1;
-   output[1]=1;
-   for(int i=2;i<=sz;i++)
-   {
-       output[i]=output[i-1];
-       if(input[i-2]*10+input[i-1]<=26)
-       {
-           output[i]+=output[i-2];
-       }
-   }
-   int ans=output[sz];
-   delete [] output;
-   return ans;
-}
-
 
 int main()
 {
     Charpoka;
-    int n;
-    cin>>n;
-    int arr[n+1],dp[n+1];
-    memset(dp,0,sizeof(dp));
-    string s;
-    cin>>s;
+    int n,e;
+    cin>>n>>e;
+    int **edges=new int*[n];
     for(int i=0;i<n;i++)
     {
-        arr[i+1]=s[i]-'0';
-        //cout<<s[i]-'0'<<endl;
+        edges[i]=new int[n];
+        for(int j=0;j<n;j++)
+        {
+            edges[i][j]=0;
+        }
     }
-    cout<<num_codes2(arr,n,dp)<<endl;
 
+    for(int i=0;i<e;i++)
+    {
+        int f,s;
+        cin>>f>>s;
+        edges[f][s]=1;
+        edges[s][f]=1;
+    }
+    bool *visited=new bool[n];
+    for(int i=0;i<n;i++)
+    {
+        visited[i]=false;
+    }
+    print(edges,n,0,visited);
+
+    delete [] edges;
+    delete [] visited;
+
+
+    return 0;
 }
 
 /*
