@@ -30,65 +30,72 @@ vector<bool>Prime(MX+1,false);
 int dx[]= {0,1,-1,0,0};
 int dy[]= {0,0,0,1,-1};
 
-void print(int** edges,int n,int sv,bool* visited)
-{
-    cout<<sv<<endl;
-    visited[sv]=true;
-    for(int i=0;i<n;i++)
-    {
-        if(i==sv)
-        {
-            continue;
-        }
-        if(edges[sv][i]==1)
-        {
-            if(visited[i])
-            {
-                continue;
-            }
-            else
-            {
-                print(edges,n,i,visited);
-            }
-        }
-    }
-}
-
 int main()
 {
     Charpoka;
-    int n,e;
-    cin>>n>>e;
-    int **edges=new int*[n];
-    for(int i=0;i<n;i++)
+    int cnt=0;
+    TC
     {
-        edges[i]=new int[n];
-        for(int j=0;j<n;j++)
+        int n;
+        cin>>n;
+        int a[n],b[n];
+        for(int i=0;i<n;i++)
         {
-            edges[i][j]=0;
+            cin>>a[i];
         }
+        vector<pair<int,int>>v;
+        bool flag=false;
+        int left,right;
+        for(int i=0;i<n;i++)
+        {
+            cin>>b[i];
+        }
+
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]!=b[i])
+            {
+                right=i;
+            }
+            if(a[n-i-1]!=b[n-i-1])
+            {
+                left=n-i-1;
+            }
+        }
+
+        int mn=INT_MAX,mx=INT_MIN;
+
+        for(int i=left;i<=right;i++)
+        {
+            mn=min(mn,a[i]);
+            mx=max(mx,a[i]);
+        }
+
+        while(left>0 && a[left-1]<=mn)
+        {
+            left--;
+            mn=min(mn,a[left]);
+        }
+
+        while(right<n-1 && a[right+1]>=mx)
+        {
+            right++;
+            mx=max(mx,a[right]);
+        }
+        cout<<left+1<<" "<<right+1<<endl;
     }
-
-    for(int i=0;i<e;i++)
-    {
-        int f,s;
-        cin>>f>>s;
-        edges[f][s]=1;
-        edges[s][f]=1;
-    }
-    bool *visited=new bool[n];
-    for(int i=0;i<n;i++)
-    {
-        visited[i]=false;
-    }
-    print(edges,n,0,visited);
-
-    delete [] edges;
-    delete [] visited;
-
-
     return 0;
 }
 
 /*
+3
+7
+6 7 3 4 4 6 5
+6 3 4 4 7 6 5
+3
+1 2 1
+1 1 2
+3
+2 2 1
+2 1 2
 */
