@@ -30,60 +30,82 @@ vector<bool>Prime(MX+1,false);
 int dx[]= {0,1,-1,0,0};
 int dy[]= {0,0,0,1,-1};
 
+struct trieNode
+{
+    int value;
+    trieNode* child[2];
+    trieNode()
+    {
+        this->value=0;
+        this->child[0]=this->child[1]=NULL;
+    }
+};
+
+class Solution
+{
+    public:
+        void Insert(trieNode* root,int pre_xor)
+        {
+            trieNode* temp=root;
+            for(int i=31;i>=0;i--)
+            {
+                bool curr=pre_xor&(1<<i);
+                if(temp->child[curr]==NULL)
+                {
+                    temp->child[curr]=new trieNode();
+                }
+                temp=temp->child[curr];
+            }
+            temp->value=pre_xor;
+        }
+
+        int query(trieNode* root,int pre_xor)
+        {
+            trieNode* temp=root;
+            for(int i=31;i>=0;i--)
+            {
+                bool curr=pre_xor&(1<<i);
+                if(temp->child[1-curr]!=NULL)
+                {
+                    temp=temp->child[1-curr];
+                }
+                else if(temp->child[curr]!=NULL)
+                {
+                    temp=temp->child[curr];
+                }
+            }
+            return pre_xor^(temp->value);
+        }
+
+        int maxSubarrayXOR(int N,int *arr)
+        {
+            trieNode* root=new trieNode();
+            Insert(root,0);
+            int result=INT_MIN,pre_xor=0;
+            for(int i=0;i<N;i++)
+            {
+                pre_xor=pre_xor^arr[i];
+                Insert(root,pre_xor);
+                result=max(result,query(root,pre_xor));
+            }
+            return result;
+        }
+
+
+};
+
 int main()
 {
     Charpoka;
-    int cnt=0;
-    TC
+    int N,X;
+    cin>>N;
+    int arr[N];
+    for(int i=0;i<N;i++)
     {
-        int n;
-        cin>>n;
-        int a[n],b[n];
-        for(int i=0;i<n;i++)
-        {
-            cin>>a[i];
-        }
-        vector<pair<int,int>>v;
-        bool flag=false;
-        int left,right;
-        for(int i=0;i<n;i++)
-        {
-            cin>>b[i];
-        }
-
-        for(int i=0;i<n;i++)
-        {
-            if(a[i]!=b[i])
-            {
-                right=i;
-            }
-            if(a[n-i-1]!=b[n-i-1])
-            {
-                left=n-i-1;
-            }
-        }
-
-        int mn=INT_MAX,mx=INT_MIN;
-
-        for(int i=left;i<=right;i++)
-        {
-            mn=min(mn,a[i]);
-            mx=max(mx,a[i]);
-        }
-
-        while(left>0 && a[left-1]<=mn)
-        {
-            left--;
-            mn=min(mn,a[left]);
-        }
-
-        while(right<n-1 && a[right+1]>=mx)
-        {
-            right++;
-            mx=max(mx,a[right]);
-        }
-        cout<<left+1<<" "<<right+1<<endl;
+        cin>>arr[i];
     }
+    Solution ob;
+    cout<<ob.maxSubarrayXOR(N,arr)<<endl;
     return 0;
 }
 
