@@ -34,7 +34,13 @@ int prime[100],expo[100],len=0;
 
 void PrimeFact(int n)
 {
-
+    if(n==1)
+    {
+        len++;
+        prime[len]=2;
+        expo[len]=0;
+        return;
+    }
     int d=2;
     while(d*d<=n && n>1)
     {
@@ -66,22 +72,10 @@ void PrimeFact(int n)
 int main()
 {
     Charpoka;
-    PrimeFact(1000);
+    PrimeFact(1);
     for(int i=1;i<=len;i++)
     {
         cout<<prime[i]<<" "<<expo[i]<<endl;
     }
     return 0;
 }
-/*
-3
-7
-6 7 3 4 4 6 5
-6 3 4 4 7 6 5
-3
-1 2 1
-1 1 2
-3
-2 2 1
-2 1 2
-*/
