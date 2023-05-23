@@ -29,133 +29,31 @@ const ll MX = 1e8;
 vector<bool>Prime(MX+1,false);
 int dx[]= {0,1,-1,0,0};
 int dy[]= {0,0,0,1,-1};
-
-
+const ll MOD = 1e9+7;
 int main()
 {
     Charpoka;
-    TC
+    ll n;
+    cin>>n;
+    vector<ll>v;
+    for(ll i=0;i<n;i++)
     {
-        ll n,k;
-        cin>>n>>k;
-        vector<ll>v(n+1);
-        for(ll i=1;i<=n;i++)
-        {
-            cin>>v[i];
-        }
-        ll cnt=0;
-        for(ll i=1;i<=n;i++)
-        {
-            if(v[i]!=i)
-            {
-                cnt++;
-            }
-        }
-        if(cnt==0)
-        {
-            cout<<0<<endl;
-        }
-        else
-        {
-            if(cnt==2)
-            {
-                ll idx1=-1,idx2=-1;
-                for(ll i=1;i<=n;i++)
-                {
-                    if(idx1==-1)
-                    {
-                        if(v[i]!=i)
-                        {
-                            idx1=i;
-                        }
-                    }
-                    else
-                    {
-                        if(v[i]!=i)
-                        {
-                            idx2=i;
-                            break;
-                        }
-                    }
-                }
-                if(idx2-idx1<=k)
-                {
-                    cout<<0<<endl;
-                }
-                else
-                {
-                    cout<<1<<endl;
-                }
-            }
-            else
-            {
-                ll idx1=-1,idx3=-1;
-                for(ll i=1;i<=n;i++)
-                {
-                    if(v[i]!=i && idx1==-1)
-                    {
-                        idx1=i;
-                    }
-                    else if(v[i]!=i && idx1!=-1)
-                    {
-                        idx3=i;
-                    }
+        ll a;
+        cin>>a;
+        v.pb(a);
+    }
+    sort(v.begin(),v.end());
 
-                }
-                //cout<<"Idx3 - Idx1 = "<<idx3-idx1<<endl;
-                if(idx3-idx1<=k)
-                {
-                    cout<<0<<endl;
-                }
-                else
-                {
-                    ll idx2=-1;
-                    ll mx=LLONG_MIN;
-                    for(ll i=idx1+1;i<n;i++)
-                    {
-                        if(v[i]!=i)
-                        {
-                            if(v[i]<v[idx1])
-                            {
-                                ll diff=v[idx1]-v[i];
-                                if(mx<diff)
-                                {
-                                    mx=diff;
-                                    idx2=i;
-                                }
-                            }
-                        }
-                    }
-                    swap(v[idx1],v[idx2]);
-                    //cout<<"Idx2 - Idx1 = "<<idx2-idx1<<endl;
-                    idx1=-1,idx3=-1;
-                    for(ll i=1;i<=n;i++)
-                    {
-                        if(v[i]!=i && idx1==-1)
-                        {
-                            idx1=i;
-                        }
-                        else if(v[i]!=i && idx1!=-1)
-                        {
-                            idx3=i;
-                        }
-                    }
-                    //cout<<"Idx3 - Idx1 = "<<idx3-idx1<<endl;
-                    if(idx3-idx1<=k)
-                    {
-                        cout<<1<<endl;
-                    }
-                    else
-                    {
-                        cout<<-1<<endl;
-                    }
-
-
-                }
-
-            }
+    for(ll i=0;i<v.size()-2;i++)
+    {
+        ll a=v[i],b=v[i+1],c=v[i+2];
+        if(a+b>c && b+c>a && c+a>b)
+        {
+            YES;
+            return 0;
         }
     }
+    NO;
     return 0;
 }
 /*
