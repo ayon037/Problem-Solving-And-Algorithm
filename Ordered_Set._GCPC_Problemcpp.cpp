@@ -68,9 +68,10 @@ struct Key
 
 int main()
 {
+    // Galactic Collegiate Programming Contest , Kattis (GCPC)
+    Charpoka;
     ordered_set<Key>os;
     unordered_map<int,int>mp1,mp2;
-    Charpoka;
     int n,m;
     cin>>n>>m;
     for(int i=1;i<=n;i++)
