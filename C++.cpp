@@ -37,7 +37,7 @@ vector<bool>Prime(MX+1,false);
 int dx[]= {0,1,-1,0,0};
 int dy[]= {0,0,0,1,-1};
 const ll MOD = 1e9+7;
-vector<ll>graph[MX];
+//vector<ll>graph[MX];
 vector<ll>leafs;
 
 struct Key
@@ -66,44 +66,51 @@ struct Key
     }
 };
 
+const int BITS=4;
 int main()
 {
-    ordered_set<Key>os;
-    unordered_map<int,int>mp1,mp2;
     Charpoka;
-    int n,m;
-    cin>>n>>m;
-    for(int i=1;i<=n;i++)
+    multiset<ll>os;
+    ll n,q;
+    cin>>n>>q;
+    for(ll i=1;i<=n;i++)
     {
-        os.insert({0,0,i});
+        ll a;
+        cin>>a;
+        os.insert(a);
     }
-    while(m--)
+
+    while(q--)
     {
-        int a,b;
-        cin>>a>>b;
-        os.erase({mp1[a],mp2[a],a});
-        mp1[a]++;
-        mp2[a]+=b;
-        os.insert({mp1[a],mp2[a],a});
-        int index = os.order_of_key({mp1[1],mp2[1],1});
-        cout<<index+1<<endl;
-    }
-    /*for(auto it:os)
-    {
-        cout<<"Team: "<<it.a<<" -> Solved Problems: "<<it.mp1<<" , Penalty: "<<it.mp2<<endl;
-    }*/
-    /*for (const auto& element : os) {
-        for (const auto& value : element) {
-            cout << "Value: {" << value.second.first << ", " << value.second.second << "}" << endl;
+        ll a;
+        cin>>a;
+        auto idx=os.lower_bound(a);
+        if(idx==os.end())
+            cout<<-1<<endl;
+        else
+        {
+            cout<<*idx<<endl;
+            os.erase(idx);
         }
-    }*/
+    }
     return 0;
+
 }
 
 /*
+5
+1 1
+1
+1 2
+1 -1
+1 4
+1 -1 1 -1
 3 4
-2 7
-3 5
-1 6
-1 9
+1 -1 -1 -1
+-1 1 1 -1
+1 1 1 -1
+3 4
+1 -1 1 1
+-1 1 -1 1
+1 -1 1 1
 */
