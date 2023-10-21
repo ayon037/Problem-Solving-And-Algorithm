@@ -30,7 +30,7 @@ vector<bool>Prime(MX+1,true);
 int dx[]= {0,1,-1,0,0};
 int dy[]= {0,0,0,1,-1};
 
-void PrimeFinder(ll n)
+/*void PrimeFinder(ll n)
 {
     Prime[1]=false;
     for(ll i=2;i*i<=n;i++)
@@ -43,18 +43,48 @@ void PrimeFinder(ll n)
             }
         }
     }
+}*/
+
+
+struct Node
+{
+    ll val1,val2;
+};
+
+bool compareData(pair<ll,ll>pp1,pair<ll,ll>pp2)
+{
+    if(pp1.first>pp2.first)
+    {
+        return true;
+    }
+    else if(pp1.first<pp2.first)
+    {
+        return false;
+    }
+    return pp1.second<pp2.second;
 }
 
 int main()
 {
     Charpoka;
-    PrimeFinder(200);
-    for(ll i=1;i<=200;i++)
+    ll n;
+    cin>>n;
+    vector<ll>v(n);
+    ll mn=LLONG_MAX;
+    for(ll i=0;i<n;i++)
     {
-        if(Prime[i]==true)
-        {
-            cout<<i<<" ";
-        }
+        cin>>v[i];
+        v[i]=abs(v[i]);
+        mn=min(mn,v[i]);
     }
+    cout<<mn<<endl;
+    return 0;
 }
+
+/*
+3
+2 1 1
+10 1 2
+3 7 8
+*/
 

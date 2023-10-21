@@ -72,7 +72,7 @@ void PrimeFact(int n)
 int main()
 {
     Charpoka;
-    PrimeFact(1);
+    PrimeFact(30);
     for(int i=1;i<=len;i++)
     {
         cout<<prime[i]<<" "<<expo[i]<<endl;
