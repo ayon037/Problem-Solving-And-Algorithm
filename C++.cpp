@@ -35,9 +35,13 @@ const Tf EPS = 1e-9;
 const ll MX = 1e5+15;
 vector<bool>Prime(MX+1,true);
 const ll MOD = 1e9+7;
-//vector<ll>graph[MX];
+vector<ll>graph[1220];
+bool visited[1220];
+ll color[500];
 vector<ll>leafs;
-
+map<ll,ll>mpp;
+ll parent[500];
+int dp[MX];
 
 char ch[110][110];
 bool vis[110][100];
@@ -169,43 +173,6 @@ bool check(ll x,ll a,ll b)
     return true;
 }
 
-bool dfs(int row,int col,int n)
-{
-    if(col == n)
-    {
-        if(ch[row][col]=='0')
-            return 1;
-        else
-            return 0;
-    }
-    vis[row][col] = 1;
-    bool flag = false;
-    bool track = false;
-    for(int i = 0; i<5; i++)
-    {
-        int x = row + dx[i];
-        int y = col + dy[i];
-        if(x <= 2 && x > 0 && y > 0 && y <= n && ch[x][y] == '0' && vis[x][y] == 0)
-        {
-            vis[x][y] = 1;
-            track = dfs(x,y,n);
-            if(track == true)
-            {
-                flag = true;
-            }
-            else
-            {
-                if(flag == false)
-                {
-                    flag = false;
-                }
-            }
-
-        }
-    }
-    return flag;
-}
-
 struct Node1
 {
     ll val,idx;
@@ -283,60 +250,155 @@ void update(vector<ll>&v,ll node, ll start, ll finish, ll idx, ll newvalue)
 
 
 }
-int main()
+
+string func1(string &s,int idx)
 {
-    Charpoka;
-    string s;
-    cin>>s;
-    ll n=s.size();
-    vector<ll>v(n+1);
-    map<ll,ll>cnt;
-    for(ll i=0;i<s.size();i++)
+    string str="";
+    for(int i=0; i<s.size(); i++)
     {
-        ll val=(ll)s[i];
-        v[i+1]=val;
-        cnt[val]++;
-    }
-    memset(tree1,0,sizeof(tree1));
-    build(v,1,1,n);
-    TC
-    {
-        ll qu;
-        cin>>qu;
-        if(qu==2)
+        if(i==idx)
         {
-            ll idx1,idx2;
-            cin>>idx1>>idx2;
-            ll ans=query(v,1,1,n,idx1,idx2);
-            cout<<ans<<endl;
+            str+=s[i];
+            str+='0';
+            str+='1';
         }
         else
         {
-            ll idx;
-            char ch;
-            cin>>idx>>ch;
-            ll curr=(ll)v[idx];
-            ll val=(ll)ch;
-            if(curr==val)
-            {
+            str+=s[i];
+        }
+    }
+    return str;
+}
 
-            }
-            else
+void dfs(ll node,ll par,ll &cycleNumber,vector<vector<ll>>&cycles)
+{
+    if(color[node]==2)
+    {
+        return;
+    }
+    if(color[node]==1)
+    {
+        vector<ll>v;
+        cycleNumber++;
+        ll curr=par;
+        v.pb(curr);
+        while(curr!=node)
+        {
+            curr=parent[curr];
+            v.pb(curr);
+        }
+        cycles.pb(v);
+        return;
+    }
+    parent[node]=par;
+    color[node]=1;
+    for(int v:graph[node])
+    {
+        if(v==parent[node])
+        {
+            continue;
+        }
+        dfs(v,node,cycleNumber,cycles);
+    }
+    color[node]=2;
+}
+
+
+/*void FindAnswer(ll &cyclenumber,vector<vector<ll>>& cycles)
+{
+    for (ll i=0; i<cyclenumber; i++)
+    {
+        ll sum=0;
+        //cout<<"Cycle No: "<<i+1<<endl;
+        if(cycles[i].size()<=4)
+        {
+            for(auto x:cycles[i])
+                sum+=mpp[x];
+        }
+        ans=max(ans,sum);
+    }
+}*/
+
+
+int selectMinVertex(vector<int>&value,vector<bool>&setMST)
+{
+    int minimum=INT_MAX;
+    int vertex;
+    for(int i=0; i<6; i++)
+    {
+        if(setMST[i]==false && value[i]<minimum)
+        {
+            vertex=i;
+            minimum=value[i];
+        }
+    }
+    return vertex;
+}
+void findMST(int adjacency[6][6])
+{
+    int Parent[6];
+    vector<int>value(6,INT_MAX);
+    vector<bool>setMST(6,false);
+    Parent[0]=-1;
+    value[0]=0;
+    for(int i=0; i<5; i++)
+    {
+        int U=selectMinVertex(value,setMST);
+        setMST[U]=true;
+        for(int j=0; j<6; j++)
+        {
+            if(adjacency[U][j]!=0 && setMST[j]==false && adjacency[U][j]<value[j])
             {
-                if(cnt[curr]<=1)
+                value[j]=adjacency[U][j];
+                Parent[j]=U;
+            }
+        }
+    }
+    for(int i=1; i<6; i++)
+        cout<<"U->V: "<<Parent[i]<<"->"<<i<<" wt = "<<adjacency[parent[i]][i]<<endl;
+}
+bool hasLength(int number, int length)
+{
+    return static_cast<int>(log10(number)) + 1 == length;
+}
+int main()
+{
+    Charpoka;
+    TC
+    {
+        ll n;
+        cin>>n;
+        vector<ll>v(n);
+        ll odd=0,even=0;
+        ll gc;
+        for(ll i=0; i<n; i++)
+        {
+            cin>>v[i];
+            if(v[i]%2)
+                odd++;
+            else
+                even++;
+        }
+        if(odd>0 && even>0)
+        {
+            cout<<2<<endl;
+        }
+        else
+        {
+            set<ll>s;
+            for(ll i=2;i<=1e18;i*=2)
+            {
+                s.clear();
+                for(ll j=0; j<n; j++)
                 {
-                    mp[curr]=false;
-                    cnt[val]++;
-                    cnt.erase(curr);
+                    s.insert(v[j]%i);
                 }
-                else
+                if(s.size()==2)
                 {
-                    cnt[val]++;
-                    cnt[curr]--;
+                    cout<<i<<endl;
+                    break;
                 }
             }
-            v[idx]=val;
-            update(v,1,1,n,idx,val);
         }
     }
     return 0;
