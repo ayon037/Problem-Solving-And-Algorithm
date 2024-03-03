@@ -361,45 +361,152 @@ bool hasLength(int number, int length)
 {
     return static_cast<int>(log10(number)) + 1 == length;
 }
-int main()
+struct Node
 {
-    Charpoka;
-    TC
+    ll a;
+    string s;
+    ll b;
+};
+
+
+
+
+
+vector<ll> lcs(vector<ll> a, vector<ll> b)
+{
+    vector<ll>ans;
+    vector<vector<ll>>dp(a.size()+1,vector<ll>(b.size()+1));
+    for(ll i=0; i<=a.size(); i++)
     {
-        ll n;
-        cin>>n;
-        vector<ll>v(n);
-        ll odd=0,even=0;
-        ll gc;
-        for(ll i=0; i<n; i++)
+        dp[i][0]=0;
+    }
+    for(ll i=0; i<=b.size(); i++)
+    {
+        dp[0][i]=0;
+    }
+    for(ll i=1; i<=a.size(); i++)
+    {
+        for(ll j=1; j<=b.size(); j++)
         {
-            cin>>v[i];
-            if(v[i]%2)
-                odd++;
-            else
-                even++;
-        }
-        if(odd>0 && even>0)
-        {
-            cout<<2<<endl;
-        }
-        else
-        {
-            set<ll>s;
-            for(ll i=2;i<=1e18;i*=2)
+            if(a[i-1]==b[j-1])
             {
-                s.clear();
-                for(ll j=0; j<n; j++)
-                {
-                    s.insert(v[j]%i);
-                }
-                if(s.size()==2)
-                {
-                    cout<<i<<endl;
-                    break;
-                }
+                dp[i][j]=1+dp[i-1][j-1];
+            }
+            else
+            {
+                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
             }
         }
     }
+    ll i=a.size(),j=b.size();
+    while(i>0 && j>0)
+    {
+        if(a[i-1]==b[j-1])
+        {
+            ans.push_back(a[i-1]);
+            i--;
+            j--;
+        }
+        else
+        {
+            if(dp[i-1][j]>dp[i][j-1])
+            {
+                i--;
+            }
+            else
+            {
+                j--;
+            }
+        }
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+}
+int main()
+{
+    Charpoka;
+    ll nc;
+    cin>>nc;
+    vector<ll>calendar[nc];
+    map<ll,ll>mp;
+    for(ll i=0;i<nc;i++)
+    {
+        ll n;
+        cin>>n;
+        for(ll j=0;j<n;j++)
+        {
+            ll days;
+            cin>>days;
+            calendar[i].pb(days);
+            mp[i]+=days;
+        }
+    }   
+
+    ll query;
+    cin>>query;
+    for(ll i=1;i<=query;i++)
+    {
+        ll cal1,cal2,day,month,year;
+        cin>>cal1>>cal2>>day>>month>>year;
+        ll tot1=0;
+        for(ll j=0;j<month;j++)
+        {
+            if(j!=month-1)
+            {
+                tot1+=calendar[cal1-1][j];
+            }
+            else
+            {
+                tot1+=day;
+                break;
+            }
+        }
+        tot1+=(mp[cal1-1]*(year-1));
+        //cout<<tot1<<endl;
+        ll tot2=tot1/mp[cal2-1];
+        ll remaining=tot1-(tot2*mp[cal2-1]);
+        //cout<<remaining<<endl;
+        if(remaining==0)
+        {
+            ll sz=calendar[cal2-1].size()-1;
+            cout<<"Query "<<i<<": "<<calendar[cal2-1][sz]<<" "<<sz+1<<" "<<tot2<<endl;
+        }
+        else
+        {
+            ll val=remaining;
+            ll cal2_day=0,cal2_month=0,cal2_year=0;
+            cal2--;
+            for(ll j=0;j<calendar[cal2].size();j++)
+            {
+                if(calendar[cal2][j]<=val)
+                {
+                    val-=calendar[cal2][j];
+                    cal2_day=calendar[cal2][j];
+                    cal2_month=j+1;
+                }
+                else
+                {
+                    if(val!=0)
+                    {
+                        cal2_day=val;
+                        cal2_month=j+1;
+                    }
+                    //cal2_day=val;
+                    //cal2_month=j+1;
+                    break;
+                }
+            }
+            cal2_year=tot2+1;
+            //cout<<cal2_day<<" "<<cal2_month<<" "<<cal2_year<<endl;
+            cout<<"Query "<<i<<": "<<cal2_day<<" "<<cal2_month<<" "<<cal2_year<<endl;
+        }
+
+        
+    }
+    
+
     return 0;
 }
+/*
+
+*/
